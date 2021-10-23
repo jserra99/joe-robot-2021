@@ -116,7 +116,7 @@ class SwerveModule:
 	def checkEncoders(self):
 		absolutePosition = self.absoluteEncoder.getValue()*self.absoluteEncoderConversion
 		position = self.encoderBoundedPosition()
-		wpilib.SmartDashboard.putNumber(self.moduleName + "ABS",absolutePosition)
+		wpilib.SmartDashboard.putNumber(self.moduleName + " ABS",absolutePosition)
 		wpilib.SmartDashboard.putNumber(self.moduleName + " NEO",position)
 		
 	def autoPosition(self):
