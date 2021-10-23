@@ -217,6 +217,7 @@ class MyRobot(wpilib.TimedRobot):
 		z = .65*self.scaling*self.checkDeadband(self.joystick.getZ(),False)
 		throttle = self.joystick.getThrottle()
 		wpilib.SmartDashboard.putNumber("Throttle",throttle)
+		wpilib.SmartDashboard.putBoolean("Field Oriented Controls", self.fieldOrient)
 		
 		if self.joystick.getRawButton(7):
 			x *= .3
@@ -240,6 +241,11 @@ class MyRobot(wpilib.TimedRobot):
 		if self.joystick.getRawButton(12):
 			self.driveAngleController.setSetpoint(-90)
 			z = self.driveAngleController.calculate(angleDegrees)
+		if self.joystick.getRawButton(8): # swaps the field orient boolean
+			if self.fieldOrient:
+				self.fieldOrient = False
+			else:
+				self.fieldOrient = True
 		if self.joystick.getRawButton(7):
 			offsets = self.drive.giveAbsolutes()
 			newConfig = {
