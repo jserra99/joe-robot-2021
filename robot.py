@@ -217,7 +217,7 @@ class MyRobot(wpilib.TimedRobot):
 		z = .65*self.scaling*self.checkDeadband(self.joystick.getZ(),False)
 		throttle = self.joystick.getThrottle()
 		wpilib.SmartDashboard.putNumber("Throttle",throttle)
-		wpilib.SmartDashboard.putBoolean("Field Oriented Controls", self.fieldOrient)
+		wpilib.SmartDashboard.putBoolean("Field Orient", self.fieldOrient)
 		
 		if self.joystick.getRawButton(7):
 			x *= .3
