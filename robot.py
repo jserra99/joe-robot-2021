@@ -110,11 +110,9 @@ class MyRobot(wpilib.TimedRobot):
 		climbDown = self.auxiliary.getAButton()
 		turretClockwise = self.auxiliary.getBumper(wpilib.interfaces.GenericHID.Hand.kRightHand)
 		turretCounterclockwise = self.auxiliary.getBumper(wpilib.interfaces.GenericHID.Hand.kLeftHand)
-		manualFlywheel = self.auxiliary.getTriggerAxis(wpilib.interfaces.GenericHID.Hand.kLeftHand)
+		manualFlywheel = self.auxiliary.getTriggerAxis(wpilib.interfaces.GenericHID.Hand.kLeftHand) * 1000
 		feederIn = self.auxiliary.getTriggerAxis(wpilib.interfaces.GenericHID.Hand.kRightHand)
 		autoAim = self.auxiliary.getStartButton()
-		
-		wpilib.SmartDashboard.putNumber("Shooter RPM", manualFlywheel) # leave this for now to see values, later change so that it shows 0 if below a certain threshold
 
 		#intake control
 		if intakeIn:
@@ -157,7 +155,7 @@ class MyRobot(wpilib.TimedRobot):
 				wpilib.SmartDashboard.putNumber("Shooter RPM", manualFlywheel)
 				manualFlywheelSpeed = manualFlywheel # haha if this works it will be the big funny
 				self.turret.flywheelRPM(manualFlywheelSpeed)
-				if feederIn:
+				if feederIn >= 0.1:
 					self.feeder.feed(self.feederSpeed)
 				else:
 					self.feeder.stop()
