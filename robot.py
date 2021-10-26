@@ -62,6 +62,7 @@ class MyRobot(wpilib.TimedRobot):
 		self.climbExtend = .35
 		self.climbContract = .75
 		self.manualFlywheelSpeed = 8.5 #volts
+		self.flywheelConversionFactor = 7000
 		self.fieldOrient = config['fieldOrient'] # toggle this boolean to swap between field orient and non-field orient driving
 		
 		self.navx.reset()
@@ -110,7 +111,7 @@ class MyRobot(wpilib.TimedRobot):
 		climbDown = self.auxiliary.getAButton()
 		turretClockwise = self.auxiliary.getBumper(wpilib.interfaces.GenericHID.Hand.kRightHand)
 		turretCounterclockwise = self.auxiliary.getBumper(wpilib.interfaces.GenericHID.Hand.kLeftHand)
-		manualFlywheel = self.auxiliary.getTriggerAxis(wpilib.interfaces.GenericHID.Hand.kLeftHand) * 7000
+		manualFlywheel = self.auxiliary.getTriggerAxis(wpilib.interfaces.GenericHID.Hand.kLeftHand) * self.flywheelConversionFactor
 		feederIn = self.auxiliary.getTriggerAxis(wpilib.interfaces.GenericHID.Hand.kRightHand)
 		autoAim = self.auxiliary.getStartButton()
 
