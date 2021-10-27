@@ -247,6 +247,7 @@ class MyRobot(wpilib.TimedRobot):
 			if self.fieldOrient:
 				self.fieldOrient = False
 			else:
+				self.navx.reset()
 				self.fieldOrient = True
 		if self.joystick.getRawButton(8):
 			offsets = self.drive.giveAbsolutes()
